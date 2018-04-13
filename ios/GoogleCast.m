@@ -124,6 +124,22 @@ RCT_EXPORT_METHOD(togglePauseCast)
   isPlaying ? [self.mediaControlChannel pause] : [self.mediaControlChannel play];
 }
 
+RCT_EXPORT_METHOD(playCast)
+{
+    BOOL isPlaying = self.mediaControlChannel.mediaStatus.playerState == GCKMediaPlayerStatePlaying;
+    if (!isPlaying) {
+        [self.mediaControlChannel play];
+    }
+}
+
+RCT_EXPORT_METHOD(pauseCast)
+{
+    BOOL isPlaying = self.mediaControlChannel.mediaStatus.playerState == GCKMediaPlayerStatePlaying;
+    if (isPlaying) {
+        [self.mediaControlChannel pause];
+    }
+}
+
 RCT_EXPORT_METHOD(seekCast:(double) seconds){
   [self.mediaControlChannel seekToTimeInterval: seconds];
 }
